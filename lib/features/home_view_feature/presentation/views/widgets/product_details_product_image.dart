@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
+import 'package:shopping_time/core/widgets/product_item/rate_item.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/product_details_number_item.dart';
-
-import '../../../data/models/product_item/rate_item.dart';
 
 class ProductDetailsImage extends StatelessWidget {
   const ProductDetailsImage({Key? key, required this.productModel})

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
-import 'package:shopping_time/features/home_view_feature/data/models/product_item/product_item.dart';
+import 'package:shopping_time/core/widgets/product_item/product_item.dart';
 
 class ProductsGridViewBuilder extends StatelessWidget {
   const ProductsGridViewBuilder(

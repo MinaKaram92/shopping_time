@@ -1,13 +1,14 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_time/constants.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
 import 'package:shopping_time/features/home_view_feature/data/repos/home_body_repo/home_body_repo_impl.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/view_models/cubits/home_body_products_cubit/home_body_products_cubit.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/view_models/cubits/home_body_products_cubit/home_body_products_states.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/categories_builder.dart';
-import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/products_grid_view_builder.dart';
+import 'package:shopping_time/core/widgets/products_grid_view_builder.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/search_product.dart';
 
 class HomeBody extends StatelessWidget {
@@ -49,9 +50,8 @@ class HomeBody extends StatelessWidget {
               builder: (context, state) => ConditionalBuilder(
                 condition: state is SuccessHomeBodyProductsState,
                 builder: (context) {
-                  final cubit = BlocProvider.of<HomeBodyProductsCubit>(context);
                   return ProductsGridViewBuilder(
-                    products: cubit.productsList,
+                    products: productsList,
                     scrollPhysics: const NeverScrollableScrollPhysics(),
                   );
                 },

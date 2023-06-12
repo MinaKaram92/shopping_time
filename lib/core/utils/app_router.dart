@@ -5,7 +5,7 @@ import 'package:shopping_time/features/auth_feature/presentation/views/login_vie
 import 'package:shopping_time/features/auth_feature/presentation/views/register_view.dart';
 import 'package:shopping_time/features/home_view_feature/data/models/category_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/views/cart_view.dart';
-import 'package:shopping_time/features/home_view_feature/presentation/views/category_products_view.dart';
+import 'package:shopping_time/features/category_products_feature/presentation/views/category_products_view.dart';
 import 'package:shopping_time/features/favorite_feature/presentation/views/favorites_body.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/views/product_details_view.dart';
 import '../../features/home_view_feature/presentation/views/home_layout.dart';

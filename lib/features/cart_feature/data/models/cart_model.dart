@@ -3,7 +3,7 @@ import 'package:shopping_time/core/models/product_model/product_model.dart';
 class CartModel {
   late String id;
   final ProductModel productModel;
-  final int quantity;
+  int quantity;
 
   CartModel({
     required this.productModel,
@@ -17,7 +17,16 @@ class CartModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {'productModel': productModel.toJson(), 'quantity': quantity};
+    return {
+      'id': id,
+      'productModel': productModel.toJson(),
+      'quantity': quantity
+    };
+  }
+
+  @override
+  String toString() {
+    return 'id = $id, quantity= $quantity';
   }
 
   static String generateID() {

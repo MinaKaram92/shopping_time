@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class SlideRightBackground extends StatelessWidget {
   const SlideRightBackground(
-      {Key? key, required this.iconData, required this.text})
+      {Key? key, required this.slideRightIcon, required this.slideRightText})
       : super(key: key);
 
-  final IconData iconData;
-  final String text;
+  final IconData slideRightIcon;
+  final String slideRightText;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,14 +17,14 @@ class SlideRightBackground extends StatelessWidget {
             width: 16.0,
           ),
           Icon(
-            iconData,
+            slideRightIcon,
             color: Colors.white,
           ),
           const SizedBox(
             width: 8,
           ),
           Text(
-            text,
+            slideRightText,
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold),
           ),

@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopping_time/constants.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
-import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';
+import 'package:shopping_time/core/widgets/product_item/rate_item.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';
-import 'package:shopping_time/features/home_view_feature/data/models/product_item/rate_item.dart';
 
 class ProductItemRateWithCart extends StatelessWidget {
   const ProductItemRateWithCart({
@@ -34,14 +33,13 @@ class ProductItemRateWithCart extends StatelessWidget {
                   icon: Icon(
                     FontAwesomeIcons.cartPlus,
                     size: 20.0,
-                    color: cubit.inCart
+                    color: cartProductsWithQuantities
+                            .containsKey('${productModel.id}')
                         ? Colors.green
                         : const Color(appSecondaryColor),
                   ),
                   onPressed: () async {
-                    var cartModel = CartModel(productModel: productModel);
-                    await cubit.addProductToCart(cartModel);
-                    cubit.isInCart(productModel);
+                    cubit.cartPressed(productModel);
                   },
                 ),
               ],

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:shopping_time/core/models/product_model/product_model.dart';
 
 const appPrimaryColor = 0xffebeaef;
 
@@ -10,3 +9,7 @@ const subtitleColor = 0xffFC2947;
 String? userId;
 
 bool? onBoarding;
+
+List<ProductModel> productsList = [];
+
+Map<String, dynamic> cartProductsWithQuantities = {};

@@ -1,9 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/features/home_view_feature/presentation/view_models/cubits/category_products_cubit/category_products_cubit.dart';
-import 'package:shopping_time/features/home_view_feature/presentation/view_models/cubits/category_products_cubit/category_products_states.dart';
-import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/products_grid_view_builder.dart';
+import 'package:shopping_time/core/widgets/products_grid_view_builder.dart';
+import 'package:shopping_time/features/category_products_feature/presentation/view_models/category_products_cubit/category_products_cubit.dart';
+import 'package:shopping_time/features/category_products_feature/presentation/view_models/category_products_cubit/category_products_states.dart';
 
 class CategoryProductsViewBody extends StatelessWidget {
   const CategoryProductsViewBody({Key? key}) : super(key: key);

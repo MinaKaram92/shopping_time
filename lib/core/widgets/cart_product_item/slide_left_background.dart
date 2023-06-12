@@ -19,7 +19,7 @@ class SlideLeftBackground extends StatelessWidget {
             width: 8,
           ),
           Text(
-            'Delete',
+            'Remove',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           SizedBox(

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +20,7 @@ void main() async {
   await CacheHelper.init();
   userId = CacheHelper.getData('userId');
   onBoarding = CacheHelper.getData('onBoardingValue');
-  print('User Id: $userId');
-  print('On Boarding: $onBoarding');
+  cartProductsWithQuantities = jsonDecode(CacheHelper.getData('cart')) ?? {};
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => HomeLayoutCubit(),
         ),
         BlocProvider<CartCubit>(
-          create: (BuildContext context) => CartCubit()..getUserCart(),
+          create: (BuildContext context) => CartCubit()..getCart(),
         ),
       ],
       child: MaterialApp.router(
