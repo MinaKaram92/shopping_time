@@ -11,12 +11,3 @@ void showSnack(BuildContext context, SnackStatus status, String text) {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
   ));
 }
-
-IconButton backArrow(BuildContext context) {
-  return IconButton(
-    icon: const Icon(Icons.arrow_back_ios_new, color: Color(appSecondaryColor)),
-    onPressed: () {
-      GoRouter.of(context).pop();
-    },
-  );
-}

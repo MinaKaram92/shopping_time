@@ -44,17 +44,4 @@ class HomeBodyRepoImpl implements HomeBodyRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-
-  @override
-  Future<Either<Failure, ProductModel>> getProductDetails(int id) async {
-    try {
-      var response = await _apiRepoImpl.getData('products/$id');
-      ProductModel productModel = ProductModel.fromJson(response.data);
-      return right(productModel);
-    } on DioError catch (e) {
-      return left(ServerFailure(e.toString()));
-    } catch (e) {
-      return left(ServerFailure(e.toString()));
-    }
-  }
 }

@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
@@ -16,50 +17,59 @@ class ProductDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductDetailsCubit, ProductDetailsStates>(
       builder: (context, state) {
-        return Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+        final cubit = BlocProvider.of<ProductDetailsCubit>(context);
+        return ConditionalBuilder(
+          condition: true,
+          builder: (context) {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView(
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 16.0, bottom: 16.0),
-                        child: Text(
-                          productModel.title!,
-                          style: AppTextStyles.textStyle24Reg,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 16.0, bottom: 16.0),
+                            child: Text(
+                              productModel.title!,
+                              style: AppTextStyles.textStyle24Reg,
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(16.0),
+                              ),
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ProductDetailsImage(
+                                      productModel: productModel),
+                                  ProductDetailsPriceDescription(
+                                      productModel: productModel),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      Container(
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16.0),
-                            topRight: Radius.circular(16.0),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ProductDetailsImage(productModel: productModel),
-                              ProductDetailsPriceDescription(
-                                  productModel: productModel),
-                            ],
-                          ),
-                        ),
-                      )
                     ],
                   ),
-                ],
-              ),
-            ),
-            const AddProductToFavoriteOrCart(),
-          ],
+                ),
+                AddProductToFavoriteOrCart(productModel: productModel),
+              ],
+            );
+          },
+          fallback: (context) =>
+              const Center(child: CircularProgressIndicator()),
         );
       },
     );

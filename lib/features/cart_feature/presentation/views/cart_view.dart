@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_time/constants.dart';
-import 'package:shopping_time/core/functions.dart';
 import 'package:shopping_time/features/cart_feature/presentation/views/widgets/cart_view_body.dart';
 
 class CartView extends StatelessWidget {
@@ -11,7 +10,7 @@ class CartView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(appPrimaryColor),
       appBar: AppBar(
-        leading: backArrow(context),
+        leading: const BackButton(color: Color(appSecondaryColor)),
         backgroundColor: const Color(appPrimaryColor),
         elevation: 0,
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/core/widgets/cart_product_item/slide_left_background.dart';
 import 'package:shopping_time/core/widgets/cart_product_item/slide_right_background.dart';
+import 'package:shopping_time/core/widgets/increase_decrease_cart_quantity.dart';
 import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';
@@ -103,36 +104,9 @@ class CartProductItem extends StatelessWidget {
                       const SizedBox(
                         height: 12.0,
                       ),
-                      Container(
-                        color: Colors.grey[400],
-                        width: 150.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                cubit.increaseQuantity(cartModel);
-                              },
-                              icon: const Icon(
-                                Icons.add,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Text('${cartModel.quantity}'),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                cubit.decreaseQuantity(cartModel);
-                              },
-                              icon: const Icon(
-                                Icons.remove,
-                              ),
-                            ),
-                          ],
-                        ),
+                      IncreaseDecreaseCartQantity(
+                        cartModel: cartModel,
+                        width: MediaQuery.of(context).size.width * 1.5 / 3,
                       ),
                     ],
                   ),

@@ -11,6 +11,13 @@ class CartCubit extends Cubit<CartStates> {
 
   List<CartModel> userCart = [];
 
+  bool isQuantityDecreasable(CartModel cartModel) {
+    if (cartModel.quantity > 1) {
+      return true;
+    }
+    return false;
+  }
+
   void getCart() {
     userCart = [];
     try {

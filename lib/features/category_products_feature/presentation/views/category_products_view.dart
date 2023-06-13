@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shopping_time/core/functions.dart';
+import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
 import 'package:shopping_time/features/category_products_feature/presentation/view_models/category_products_cubit/category_products_cubit.dart';
 import 'package:shopping_time/features/home_view_feature/data/models/category_model.dart';
@@ -22,9 +24,11 @@ class CategoryProductsView extends StatelessWidget {
           appBar: CustomAppBar(
             appBar: AppBar(),
             title: categoryItem.name,
-            leading: backArrow(context),
+            leading: const BackButton(),
             actionIcon: Icons.shopping_cart,
-            actionPressed: () {},
+            actionPressed: () {
+              GoRouter.of(context).push(AppRouter.kCartView);
+            },
             centerTitle: true,
           ),
           body: const CategoryProductsViewBody()),

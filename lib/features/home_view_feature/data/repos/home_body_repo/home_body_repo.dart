@@ -7,6 +7,4 @@ abstract class HomeBodyRepo {
 
   Future<Either<Failure, List<ProductModel>>> getCategoryProducts(
       String category);
-
-  Future<Either<Failure, ProductModel>> getProductDetails(int id);
 }
