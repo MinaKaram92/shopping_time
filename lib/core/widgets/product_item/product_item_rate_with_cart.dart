@@ -33,13 +33,10 @@ class ProductItemRateWithCart extends StatelessWidget {
                   icon: Icon(
                     FontAwesomeIcons.cartPlus,
                     size: 20.0,
-                    color: cartProductsWithQuantities
-                            .containsKey('${productModel.id}')
-                        ? Colors.green
-                        : const Color(appSecondaryColor),
+                    color: cubit.getCartIconColor(productModel),
                   ),
                   onPressed: () async {
-                    cubit.cartPressed(productModel);
+                    cubit.cartPressed(context, productModel);
                   },
                 ),
               ],

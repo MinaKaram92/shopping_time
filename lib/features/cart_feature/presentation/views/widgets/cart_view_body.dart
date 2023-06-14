@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/core/widgets/cart_product_item/cart_product_item.dart';
+import 'package:shopping_time/features/cart_feature/presentation/views/widgets/cart_product_item.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';
 
@@ -18,8 +18,6 @@ class CartViewBody extends StatelessWidget {
           builder: (context) => ListView.separated(
             itemBuilder: (context, index) {
               return CartProductItem(
-                slideRightIcon: Icons.favorite,
-                slideRightText: 'Move To Favorites',
                 cartModel: cubit.userCart[index],
               );
             },

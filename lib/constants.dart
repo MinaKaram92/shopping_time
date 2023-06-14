@@ -12,4 +12,10 @@ bool? onBoarding;
 
 List<ProductModel> productsList = [];
 
-Map<String, dynamic> cartProductsWithQuantities = {};
+const String cartMap = 'cartMap';
+
+Map<String, dynamic> cartProductsWithQuantitiesSaved = {};
+
+const String favoritesSet = 'favoritesSet';
+
+Map<String, dynamic> favoritesSaved = {};

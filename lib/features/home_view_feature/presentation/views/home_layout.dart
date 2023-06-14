@@ -6,7 +6,8 @@ import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/view_models/cubits/home_layout_cubit/home_layout_cubit.dart';
 import 'package:shopping_time/features/home_view_feature/presentation/view_models/cubits/home_layout_cubit/home_layout_state.dart';
 import 'package:shopping_time/core/widgets/custom_app_bar.dart';
-import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/home_layout_drawer.dart';
+import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/bottom_nav_bar.dart';
+import 'package:shopping_time/features/home_view_feature/presentation/views/widgets/navigation_drawer.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -27,8 +28,8 @@ class HomeLayout extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.kCartView);
               }),
           body: cubit.navBarScreens[cubit.initialPage],
-          drawer: const HomeViewDrawer(),
-          //bottomNavigationBar: const BottomNavBar(),
+          drawer: const NavigationDrawer(),
+          bottomNavigationBar: const BottomNavBar(),
         );
       },
     );

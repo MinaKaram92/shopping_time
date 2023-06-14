@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/functions.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';
+import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_cubit.dart';
 
 class CartCubit extends Cubit<CartStates> {
   CartCubit() : super(InitialCartState());
@@ -22,10 +26,10 @@ class CartCubit extends Cubit<CartStates> {
     userCart = [];
     try {
       for (var product in productsList) {
-        if (cartProductsWithQuantities.containsKey('${product.id}')) {
+        if (cartProductsWithQuantitiesSaved.containsKey('${product.id}')) {
           userCart.add(CartModel(
               productModel: product,
-              quantity: cartProductsWithQuantities['${product.id}']));
+              quantity: cartProductsWithQuantitiesSaved['${product.id}']));
         }
       }
       emit(SuccessGetCartState());
@@ -34,12 +38,18 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
+  Color getCartIconColor(ProductModel productModel) {
+    return cartProductsWithQuantitiesSaved.containsKey('${productModel.id}')
+        ? const Color(appSecondaryColor)
+        : Colors.grey.shade600;
+  }
+
   void addProductToCart(ProductModel productModel) async {
     try {
-      cartProductsWithQuantities.addAll({'${productModel.id}': 1});
-      CacheHelper.saveData('cart', jsonEncode(cartProductsWithQuantities));
+      cartProductsWithQuantitiesSaved.addAll({'${productModel.id}': 1});
+      CacheHelper.saveData(
+          cartMap, jsonEncode(cartProductsWithQuantitiesSaved));
       getCart();
-      print(cartProductsWithQuantities);
       emit(SuccessAddToCartState());
     } catch (e) {
       emit(FailureAddToCartState(e.toString()));
@@ -47,37 +57,55 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   void removeProductFromCart(ProductModel productModel) {
-    // try {
-    cartProductsWithQuantities.remove('${productModel.id}');
-    CacheHelper.saveData('cart', jsonEncode(cartProductsWithQuantities));
-    getCart();
-    print(cartProductsWithQuantities);
-    emit(SuccessRemoveCartState());
-    // } catch (e) {
-    //   emit(FailureRemoveCartState(e.toString()));
-    // }
+    try {
+      cartProductsWithQuantitiesSaved.remove('${productModel.id}');
+      CacheHelper.saveData(
+          cartMap, jsonEncode(cartProductsWithQuantitiesSaved));
+      getCart();
+      emit(SuccessRemoveCartState());
+    } catch (e) {
+      emit(FailureRemoveCartState(e.toString()));
+    }
   }
 
-  void cartPressed(ProductModel productModel) async {
-    if (cartProductsWithQuantities.containsKey('${productModel.id}')) {
+  void cartPressed(BuildContext context, ProductModel productModel) async {
+    if (cartProductsWithQuantitiesSaved.containsKey('${productModel.id}')) {
       removeProductFromCart(productModel);
     } else {
-      addProductToCart(productModel);
+      if (favoritesSaved.containsKey('${productModel.id}')) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return showAlertDialog(
+                context,
+                content:
+                    'Item already in favorites, do you want to move it to cart?',
+                okPressed: () {
+                  BlocProvider.of<FavoriteCubit>(context)
+                      .removeProductFromFavorites(productModel);
+                  addProductToCart(productModel);
+                  Navigator.of(context).pop();
+                },
+              );
+            });
+      } else {
+        addProductToCart(productModel);
+      }
     }
   }
 
   void increaseQuantity(CartModel cartModel) {
-    cartProductsWithQuantities['${cartModel.productModel.id}'] =
+    cartProductsWithQuantitiesSaved['${cartModel.productModel.id}'] =
         cartModel.quantity + 1;
-    CacheHelper.saveData('cart', jsonEncode(cartProductsWithQuantities));
+    CacheHelper.saveData(cartMap, jsonEncode(cartProductsWithQuantitiesSaved));
     getCart();
     emit(SuccessChangeQuantityCartState());
   }
 
   void decreaseQuantity(CartModel cartModel) {
-    cartProductsWithQuantities['${cartModel.productModel.id}'] =
+    cartProductsWithQuantitiesSaved['${cartModel.productModel.id}'] =
         cartModel.quantity - 1;
-    CacheHelper.saveData('cart', jsonEncode(cartProductsWithQuantities));
+    CacheHelper.saveData(cartMap, jsonEncode(cartProductsWithQuantitiesSaved));
     getCart();
     emit(SuccessChangeQuantityCartState());
   }

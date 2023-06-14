@@ -47,17 +47,19 @@ class HomeBody extends StatelessWidget {
                 HomeBodyProductsCubit(ServiceLocator.sl.get<HomeBodyRepoImpl>())
                   ..getHomeBodyProducts(),
             child: BlocBuilder<HomeBodyProductsCubit, HomeBodyProductsStates>(
-              builder: (context, state) => ConditionalBuilder(
-                condition: state is SuccessHomeBodyProductsState,
-                builder: (context) {
-                  return ProductsGridViewBuilder(
-                    products: productsList,
-                    scrollPhysics: const NeverScrollableScrollPhysics(),
-                  );
-                },
-                fallback: (context) =>
-                    const Center(child: CircularProgressIndicator()),
-              ),
+              builder: (context, state) {
+                return ConditionalBuilder(
+                  condition: productsList.isNotEmpty,
+                  builder: (context) {
+                    return ProductsGridViewBuilder(
+                      products: productsList,
+                      scrollPhysics: const NeverScrollableScrollPhysics(),
+                    );
+                  },
+                  fallback: (context) =>
+                      const Center(child: CircularProgressIndicator()),
+                );
+              },
             ),
           ),
         ),

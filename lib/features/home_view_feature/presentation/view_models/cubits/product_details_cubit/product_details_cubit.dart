@@ -20,7 +20,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
   }
 
   bool inCart() {
-    return cartProductsWithQuantities.containsKey('${productModel.id}');
+    return cartProductsWithQuantitiesSaved.containsKey('${productModel.id}');
   }
 
   Widget buildProductDetailsCartButton() {
@@ -29,7 +29,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
         child: IncreaseDecreaseCartQantity(
           cartModel: CartModel(
               productModel: productModel,
-              quantity: cartProductsWithQuantities['${productModel.id}']),
+              quantity: cartProductsWithQuantitiesSaved['${productModel.id}']),
           height: 55.0,
           quantitySize: 18.0,
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_time/constants.dart';
 import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';
@@ -37,8 +38,11 @@ class IncreaseDecreaseCartQantity extends StatelessWidget {
                   onPressed: cubit.isQuantityDecreasable(cartModel)
                       ? () => cubit.decreaseQuantity(cartModel)
                       : null,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.remove,
+                    color: cubit.isQuantityDecreasable(cartModel)
+                        ? const Color(appSecondaryColor)
+                        : Colors.grey.shade600,
                   ),
                 ),
                 const Spacer(),
@@ -53,6 +57,7 @@ class IncreaseDecreaseCartQantity extends StatelessWidget {
                   },
                   icon: const Icon(
                     Icons.add,
+                    color: Color(appSecondaryColor),
                   ),
                 ),
               ],

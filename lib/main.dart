@@ -6,6 +6,7 @@ import 'package:shopping_time/constants.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
+import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_cubit.dart';
 import 'package:shopping_time/simple_bloc_observer.dart';
 
 import 'features/cart_feature/presentation/view_models/cart_cubit.dart';
@@ -18,9 +19,22 @@ void main() async {
   await CacheHelper.init();
   userId = CacheHelper.getData('userId');
   onBoarding = CacheHelper.getData('onBoardingValue');
-  cartProductsWithQuantities = jsonDecode(CacheHelper.getData('cart')) ?? {};
+
+  dynamic cartdata = CacheHelper.getData(cartMap);
+  cartProductsWithQuantitiesSaved = decodeData(cartdata);
+
+  dynamic favoritesData = CacheHelper.getData(favoritesSet);
+  favoritesSaved = decodeData(favoritesData);
+
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
+}
+
+Map<String, dynamic> decodeData(dynamic data) {
+  if (data != null) {
+    return jsonDecode(data);
+  }
+  return {};
 }
 
 class MyApp extends StatelessWidget {
@@ -35,6 +49,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CartCubit>(
           create: (BuildContext context) => CartCubit()..getCart(),
+        ),
+        BlocProvider<FavoriteCubit>(
+          create: (BuildContext context) => FavoriteCubit()..getFavorites(),
         ),
       ],
       child: MaterialApp.router(

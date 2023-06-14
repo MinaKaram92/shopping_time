@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
+import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_cubit.dart';
+import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_states.dart';
 
 class ProductItemDetails extends StatelessWidget {
   const ProductItemDetails({
@@ -38,10 +40,20 @@ class ProductItemDetails extends StatelessWidget {
               children: [
                 Text(r'$' '${productModel.price}'),
                 const Spacer(),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.favorite,
-                        color: Color(appSecondaryColor)))
+                BlocBuilder<FavoriteCubit, FavoriteStates>(
+                  builder: (context, state) {
+                    final cubit = BlocProvider.of<FavoriteCubit>(context);
+                    return IconButton(
+                      onPressed: () {
+                        cubit.favPressed(context, productModel);
+                      },
+                      icon: Icon(
+                        Icons.favorite,
+                        color: cubit.getFavIconColor(productModel),
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           ],

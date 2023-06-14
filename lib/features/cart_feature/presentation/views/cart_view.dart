@@ -10,6 +10,10 @@ class CartView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(appPrimaryColor),
       appBar: AppBar(
+        title: const Text(
+          'Cart',
+          style: TextStyle(color: Color(appSecondaryColor)),
+        ),
         leading: const BackButton(color: Color(appSecondaryColor)),
         backgroundColor: const Color(appPrimaryColor),
         elevation: 0,

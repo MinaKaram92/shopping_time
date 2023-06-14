@@ -19,7 +19,7 @@ class ProductDetailsAddToCart extends StatelessWidget {
         return Expanded(
           child: GestureDetector(
             onTap: () {
-              cubit.cartPressed(productModel);
+              cubit.cartPressed(context, productModel);
             },
             child: Container(
               decoration: BoxDecoration(

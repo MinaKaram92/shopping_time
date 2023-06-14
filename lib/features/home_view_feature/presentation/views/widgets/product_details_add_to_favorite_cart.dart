@@ -26,7 +26,7 @@ class AddProductToFavoriteOrCart extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               children: [
-                const ProductDetailsAddToFavorites(),
+                ProductDetailsAddToFavorites(productModel: productModel),
                 const SizedBox(
                   width: 16.0,
                 ),
