@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shopping_time/features/auth_feature/data/models/user_model.dart';
+import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/models/user_model/user_model.dart';
 import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_methods/auth_method.dart';
 
 class EmailPasswordSignupMethod implements AuthMethod {
@@ -28,6 +29,7 @@ class EmailPasswordSignupMethod implements AuthMethod {
       name: name,
       phone: phone,
       email: email,
+      image: noProfileImage,
     );
     FirebaseFirestore.instance
         .collection('users')

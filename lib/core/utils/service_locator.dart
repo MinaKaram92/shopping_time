@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/network/remote/remote_api_repo_impl.dart';
-import 'package:shopping_time/features/home_view_feature/data/repos/home_body_repo/home_body_repo_impl.dart';
+import 'package:shopping_time/features/home_feature/data/home_body_repo/home_body_repo_impl.dart';
 
 abstract class ServiceLocator {
   static final sl = GetIt.instance;

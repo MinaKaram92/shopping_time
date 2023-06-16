@@ -22,4 +22,10 @@ abstract class AppTextStyles {
 
   static const textStyle18Reg =
       TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400);
+
+  static const textStyle18 = TextStyle(
+    fontSize: 18.0,
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
+  );
 }

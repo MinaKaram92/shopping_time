@@ -66,10 +66,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
         if (onBoarding == null) {
           GoRouter.of(context).go(AppRouter.kOnBoardingView);
         } else {
-          if (userId == null) {
+          if (currentUserId == null) {
             GoRouter.of(context).go(AppRouter.kLogin);
           } else {
-            GoRouter.of(context).go(AppRouter.kHomeView);
+            GoRouter.of(context).go(AppRouter.kAppLayout);
           }
         }
       },

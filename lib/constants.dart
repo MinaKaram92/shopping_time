@@ -6,7 +6,7 @@ const appSecondaryColor = 0xffFC4F00;
 
 const subtitleColor = 0xffFC2947;
 
-String? userId;
+String? currentUserId;
 
 bool? onBoarding;
 
@@ -19,3 +19,6 @@ Map<String, dynamic> cartProductsWithQuantitiesSaved = {};
 const String favoritesSet = 'favoritesSet';
 
 Map<String, dynamic> favoritesSaved = {};
+
+const String noProfileImage =
+    'https://firebasestorage.googleapis.com/v0/b/shopping-time-cd9cf.appspot.com/o/no_profile.png?alt=media&token=0dd66d16-f9f2-4089-ba4a-a60c176256bf';

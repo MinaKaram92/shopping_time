@@ -7,17 +7,27 @@ class MenuNavigationItem extends StatelessWidget {
     required this.onTap,
     required this.title,
     required this.leading,
-    this.trailing = false,
+    this.trailing,
+    this.subtitle,
+    this.subtitleStyle,
   }) : super(key: key);
 
   final VoidCallback onTap;
   final String title;
   final IconData leading;
-  final bool trailing;
+  final IconData? trailing;
+  final String? subtitle;
+  final TextStyle? subtitleStyle;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(title),
+      subtitle: subtitle != null
+          ? Text(
+              subtitle!,
+              style: subtitleStyle,
+            )
+          : null,
       contentPadding:
           const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       horizontalTitleGap: 24.0,
@@ -35,13 +45,10 @@ class MenuNavigationItem extends StatelessWidget {
         ),
       ),
       onTap: onTap,
-      trailing: trailing
-          ? const Icon(
-              Icons.arrow_forward,
-              color: Color(appSecondaryColor),
-              size: 28.0,
-            )
-          : null,
+      trailing: Icon(
+        trailing,
+        color: const Color(appSecondaryColor),
+      ),
     );
   }
 }

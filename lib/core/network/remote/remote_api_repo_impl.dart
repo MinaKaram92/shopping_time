@@ -10,22 +10,4 @@ class RemoteApiRepoImpl implements RemoteApiRepo {
   Future<Response> getData(String endPoint) async {
     return await _dio.get('$_baseUrl$endPoint');
   }
-
-  @override
-  deleteData() {
-    // TODO: implement deleteData
-    throw UnimplementedError();
-  }
-
-  @override
-  postData() {
-    // TODO: implement postData
-    throw UnimplementedError();
-  }
-
-  @override
-  updateData() {
-    // TODO: implement updateData
-    throw UnimplementedError();
-  }
 }

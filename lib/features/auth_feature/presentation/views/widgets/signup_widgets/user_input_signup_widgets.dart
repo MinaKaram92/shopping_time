@@ -54,7 +54,7 @@ class UserInputSignupWidgets extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomAuthIcon(
-                      image: 'assets/images/g.png',
+                      image: 'assets/images/google.png',
                       onTap: () {
                         authSignup(context, GoogleAuthMethod());
                       },
@@ -63,7 +63,7 @@ class UserInputSignupWidgets extends StatelessWidget {
                       width: 30.0,
                     ),
                     CustomAuthIcon(
-                      image: 'assets/images/f.png',
+                      image: 'assets/images/facebook.png',
                       onTap: () {
                         authSignup(context, FacebookAuthMethod());
                       },

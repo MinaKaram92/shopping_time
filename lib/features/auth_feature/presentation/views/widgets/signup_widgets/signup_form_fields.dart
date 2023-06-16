@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/core/widgets/custom_text_form_field.dart';
 import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_cubit.dart';
 import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_states.dart';
@@ -17,6 +19,16 @@ class SignupFormFields extends StatelessWidget {
           CustomTextFormField(
             validateMode: AutovalidateMode.onUserInteraction,
             hintText: 'Name',
+            contentPadding: const EdgeInsets.only(left: 50.0),
+            hintStyle: AppTextStyles.textStyle20,
+            border: textFormFieldBorder(
+                borderColor: const Color(appSecondaryColor)),
+            enabledBorder: textFormFieldBorder(
+                borderColor: const Color(appSecondaryColor)),
+            focusedBorder: textFormFieldBorder(
+                borderColor: const Color(appSecondaryColor)),
+            errorBorder: textFormFieldBorder(borderColor: Colors.red),
+            focusedErrorBorder: textFormFieldBorder(borderColor: Colors.red),
             prefixIcon: Icons.person,
             textController: cubit.nameController,
             inputType: TextInputType.name,
@@ -32,6 +44,16 @@ class SignupFormFields extends StatelessWidget {
               validateMode: AutovalidateMode.onUserInteraction,
               prefixIcon: Icons.phone_android,
               textController: cubit.phoneController,
+              contentPadding: const EdgeInsets.only(left: 50.0),
+              hintStyle: AppTextStyles.textStyle20,
+              border: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              enabledBorder: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              focusedBorder: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              errorBorder: textFormFieldBorder(borderColor: Colors.red),
+              focusedErrorBorder: textFormFieldBorder(borderColor: Colors.red),
               inputType: TextInputType.phone,
               validate: (value) {
                 if (value?.isEmpty ?? true) {
@@ -44,6 +66,16 @@ class SignupFormFields extends StatelessWidget {
               validateMode: AutovalidateMode.onUserInteraction,
               prefixIcon: Icons.email,
               textController: cubit.emailController,
+              contentPadding: const EdgeInsets.only(left: 50.0),
+              hintStyle: AppTextStyles.textStyle20,
+              border: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              enabledBorder: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              focusedBorder: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              errorBorder: textFormFieldBorder(borderColor: Colors.red),
+              focusedErrorBorder: textFormFieldBorder(borderColor: Colors.red),
               inputType: TextInputType.emailAddress,
               validate: (value) {
                 if (value?.isEmpty ?? true) {
@@ -55,6 +87,16 @@ class SignupFormFields extends StatelessWidget {
             return CustomTextFormField(
               hintText: 'Password',
               prefixIcon: Icons.lock,
+              contentPadding: const EdgeInsets.only(left: 50.0),
+              hintStyle: AppTextStyles.textStyle20,
+              border: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              enabledBorder: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              focusedBorder: textFormFieldBorder(
+                  borderColor: const Color(appSecondaryColor)),
+              errorBorder: textFormFieldBorder(borderColor: Colors.red),
+              focusedErrorBorder: textFormFieldBorder(borderColor: Colors.red),
               validateMode: AutovalidateMode.onUserInteraction,
               isSecure: cubit.passwordVisible,
               suffix: TextButton(
@@ -75,6 +117,12 @@ class SignupFormFields extends StatelessWidget {
           }),
         ],
       ),
+    );
+  }
+
+  OutlineInputBorder textFormFieldBorder({required Color borderColor}) {
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: borderColor),
     );
   }
 }

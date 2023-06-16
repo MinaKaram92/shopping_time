@@ -6,18 +6,19 @@ import 'package:shopping_time/constants.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
+import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';
+import 'package:shopping_time/features/app_Layout_feature/presentation/view_models/home_layout_cubit/app_layout_cubit.dart';
 import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_cubit.dart';
 import 'package:shopping_time/simple_bloc_observer.dart';
-
 import 'features/cart_feature/presentation/view_models/cart_cubit.dart';
-import 'features/home_view_feature/presentation/view_models/cubits/home_layout_cubit/home_layout_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   ServiceLocator.setup();
   await CacheHelper.init();
-  userId = CacheHelper.getData('userId');
+  currentUserId = CacheHelper.getData('userId');
+  print('main: $currentUserId');
   onBoarding = CacheHelper.getData('onBoardingValue');
 
   dynamic cartdata = CacheHelper.getData(cartMap);
@@ -44,8 +45,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<HomeLayoutCubit>(
-          create: (BuildContext context) => HomeLayoutCubit(),
+        BlocProvider<AppLayoutCubit>(
+          create: (BuildContext context) => AppLayoutCubit(),
+        ),
+        BlocProvider<AccountCubit>(
+          create: (BuildContext context) => AccountCubit()..getUserData(),
         ),
         BlocProvider<CartCubit>(
           create: (BuildContext context) => CartCubit()..getCart(),

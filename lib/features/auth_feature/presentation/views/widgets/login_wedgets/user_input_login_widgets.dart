@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopping_time/core/functions.dart';
-import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
-import 'package:shopping_time/core/utils/service_locator.dart';
 import 'package:shopping_time/core/widgets/custom_material_button.dart';
+import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';
 import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_cubit.dart';
 import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_states.dart';
 import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_methods/auth_method.dart';
@@ -26,7 +25,8 @@ class UserInputLoginWidgets extends StatelessWidget {
     return BlocListener<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is SuccessAuthState) {
-          GoRouter.of(context).go(AppRouter.kHomeView);
+          BlocProvider.of<AccountCubit>(context).getUserData();
+          GoRouter.of(context).go(AppRouter.kAppLayout);
         } else if (state is FailureAuthState) {
           showSnack(context, SnackStatus.fail, state.errorMessage);
         }
@@ -62,7 +62,7 @@ class UserInputLoginWidgets extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomAuthIcon(
-                      image: 'assets/images/g.png',
+                      image: 'assets/images/google.png',
                       onTap: () {
                         customLogin(context, GoogleAuthMethod());
                       }),
@@ -70,7 +70,7 @@ class UserInputLoginWidgets extends StatelessWidget {
                     width: 30.0,
                   ),
                   CustomAuthIcon(
-                      image: 'assets/images/f.png',
+                      image: 'assets/images/facebook.png',
                       onTap: () {
                         customLogin(context, FacebookAuthMethod());
                       }),
