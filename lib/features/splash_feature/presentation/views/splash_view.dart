@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/features/splash_feature/presentation/views/widgets/splash_view_body.dart';
 
 class SplashView extends StatelessWidget {

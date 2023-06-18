@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/features/cart_feature/presentation/views/widgets/cart_view_body.dart';
 
 class CartView extends StatelessWidget {

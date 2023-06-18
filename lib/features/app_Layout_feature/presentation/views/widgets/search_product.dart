@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/features/app_Layout_feature/presentation/view_models/home_layout_cubit/app_layout_cubit.dart';
 
 class SearchProduct extends StatelessWidget {

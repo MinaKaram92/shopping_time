@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
 import 'package:shopping_time/core/widgets/increase_decrease_cart_quantity.dart';
 import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';

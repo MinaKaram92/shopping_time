@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';
 
 class ProfilePhoto extends StatelessWidget {

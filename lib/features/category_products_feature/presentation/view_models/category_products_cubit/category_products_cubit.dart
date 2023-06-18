@@ -14,7 +14,7 @@ class CategoryProductsCubit extends Cubit<CategoryProductsStates> {
   Future<void> getCategoryProducts(String category) async {
     var response = await homeBodyRepo.getCategoryProducts(category);
     response.fold((failure) {
-      emit(FailureCategoryProductsState(failure.errorMessage));
+      emit(FailureCategoryProductsState(failure.errMessage));
     }, (ctagoryProducts) {
       categoryProductsList = ctagoryProducts;
       emit(SuccessCategoryProductsState());

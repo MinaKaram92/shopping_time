@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_time/features/auth_feature/utils/auth_text_styles.dart';
 
-class LogoWithGreeting extends StatelessWidget {
-  const LogoWithGreeting(
+class PageHeader extends StatelessWidget {
+  const PageHeader(
       {Key? key,
       required this.image,
-      required this.greeting,
-      required this.whatToDo})
+      required this.title,
+      required this.subtitle})
       : super(key: key);
 
   final String image;
-  final String greeting;
-  final String whatToDo;
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,12 @@ class LogoWithGreeting extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 16.0, bottom: 4),
           child: Text(
-            greeting,
+            title,
             style: AuthTextStyles.textStyle25,
           ),
         ),
         Text(
-          whatToDo,
+          subtitle,
           style: AuthTextStyles.textStyle14,
         ),
         const SizedBox(

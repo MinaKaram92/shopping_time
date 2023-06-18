@@ -6,8 +6,6 @@ const appSecondaryColor = 0xffFC4F00;
 
 const subtitleColor = 0xffFC2947;
 
-String? currentUserId;
-
 bool? onBoarding;
 
 List<ProductModel> productsList = [];

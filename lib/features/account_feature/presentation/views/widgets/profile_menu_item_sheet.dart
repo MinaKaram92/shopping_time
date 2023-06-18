@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/core/widgets/custom_text_form_field.dart';
 import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';

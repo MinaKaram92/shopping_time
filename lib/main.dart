@@ -2,12 +2,15 @@ import 'dart:convert';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
+import 'package:shopping_time/core/constants/firebase_consts.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
 import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';
 import 'package:shopping_time/features/app_Layout_feature/presentation/view_models/home_layout_cubit/app_layout_cubit.dart';
+import 'package:shopping_time/features/auth_feature/data/repos/auth_repo_impl.dart';
+import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_cubit.dart';
 import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_cubit.dart';
 import 'package:shopping_time/simple_bloc_observer.dart';
 import 'features/cart_feature/presentation/view_models/cart_cubit.dart';
@@ -17,8 +20,7 @@ void main() async {
   await Firebase.initializeApp();
   ServiceLocator.setup();
   await CacheHelper.init();
-  currentUserId = CacheHelper.getData('userId');
-  print('main: $currentUserId');
+  print('main: ${currentUser?.uid}');
   onBoarding = CacheHelper.getData('onBoardingValue');
 
   dynamic cartdata = CacheHelper.getData(cartMap);
@@ -45,11 +47,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<AuthCubit>(
+          create: (BuildContext context) =>
+              AuthCubit(ServiceLocator.sl.get<AuthRepoImpl>()),
+        ),
         BlocProvider<AppLayoutCubit>(
           create: (BuildContext context) => AppLayoutCubit(),
         ),
         BlocProvider<AccountCubit>(
-          create: (BuildContext context) => AccountCubit()..getUserData(),
+          create: (BuildContext context) => AccountCubit(),
         ),
         BlocProvider<CartCubit>(
           create: (BuildContext context) => CartCubit()..getCart(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
 
 class CustomMaterialButton extends StatelessWidget {

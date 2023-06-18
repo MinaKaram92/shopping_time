@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
+import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/features/on_boarding_feature/presentation/view_models/on_boarding_cubit.dart';
 import 'package:shopping_time/features/on_boarding_feature/utils/on_boarding_constants.dart';
-import 'package:shopping_time/features/on_boarding_feature/utils/on_boarding_text_styles.dart';
 
 class GetStartedButton extends StatelessWidget {
   const GetStartedButton({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class GetStartedButton extends StatelessWidget {
           textColor: Colors.white,
           child: const Text(
             'Get Started',
-            style: OnBoardingTextStyles.textStyle22,
+            style: AppTextStyles.textStyle22,
           ),
         ),
       ),

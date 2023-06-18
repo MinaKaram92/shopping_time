@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
 import 'package:shopping_time/features/app_Layout_feature/presentation/views/widgets/search_product.dart';
@@ -21,21 +21,23 @@ class HomeBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SearchProduct(),
+            children: [
+              const SearchProduct(),
               Padding(
-                padding: EdgeInsets.only(top: 10.0, left: 8.0),
+                padding: const EdgeInsets.only(top: 10.0, left: 8.0),
                 child: Text(
                   'Categories',
-                  style: AppTextStyles.titleStyle,
+                  style: AppTextStyles.style30Bold
+                      .copyWith(color: const Color(appSecondaryColor)),
                 ),
               ),
-              CategoriesBuilder(),
+              const CategoriesBuilder(),
               Padding(
-                padding: EdgeInsets.only(left: 8.0, bottom: 16.0),
+                padding: const EdgeInsets.only(left: 8.0, bottom: 16.0),
                 child: Text(
                   'Explore',
-                  style: AppTextStyles.titleStyle,
+                  style: AppTextStyles.style30Bold
+                      .copyWith(color: const Color(appSecondaryColor)),
                 ),
               ),
             ],

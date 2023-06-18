@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 
 class MenuNavigationItem extends StatelessWidget {
   const MenuNavigationItem({

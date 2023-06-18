@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
-import 'package:shopping_time/core/utils/app_text_styles.dart';
+import 'package:shopping_time/core/constants/constants.dart';
+import 'package:shopping_time/core/widgets/custom_text_form_field.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
+class CustomAuthTextFormField extends StatelessWidget {
+  const CustomAuthTextFormField({
     Key? key,
     required this.hintText,
     required this.textController,
@@ -13,6 +13,8 @@ class CustomTextFormField extends StatelessWidget {
     this.isSecure = false,
     this.suffix,
     this.validateMode = AutovalidateMode.disabled,
+    required this.contentPadding,
+    required this.hintStyle,
   }) : super(key: key);
 
   final String hintText;
@@ -23,6 +25,8 @@ class CustomTextFormField extends StatelessWidget {
   final bool isSecure;
   final AutovalidateMode? validateMode;
   final Widget? suffix;
+  final EdgeInsetsGeometry contentPadding;
+  final TextStyle hintStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +42,26 @@ class CustomTextFormField extends StatelessWidget {
                 height: 80.0,
                 child: CustomTextFormField(
                   hintText: hintText,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(appSecondaryColor)),
+                  ),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(appSecondaryColor)),
+                  ),
+                  errorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(appSecondaryColor)),
+                  ),
+                  focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  contentPadding: contentPadding,
                   textController: textController,
+                  hintStyle: hintStyle,
                   inputType: inputType,
                   isSecure: isSecure,
-                  prefixIcon: prefixIcon,
                   suffix: suffix,
                   validate: validate,
                   validateMode: validateMode,

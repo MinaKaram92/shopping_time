@@ -10,7 +10,8 @@ class HomeBodyRepoImpl implements HomeBodyRepo {
   final RemoteApiRepoImpl _apiRepoImpl;
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getHomeBodyProducts() async {
+  Future<Either<CustomFailure, List<ProductModel>>>
+      getHomeBodyProducts() async {
     try {
       var products = await _apiRepoImpl.getData('products');
       List<ProductModel> productsList = [];
@@ -20,14 +21,14 @@ class HomeBodyRepoImpl implements HomeBodyRepo {
       }
       return right(productsList);
     } on DioError catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(CustomFailure(e.toString()));
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(CustomFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getCategoryProducts(
+  Future<Either<CustomFailure, List<ProductModel>>> getCategoryProducts(
       String category) async {
     try {
       var categoryProducts =
@@ -39,9 +40,9 @@ class HomeBodyRepoImpl implements HomeBodyRepo {
       }
       return right(categoryProductsList);
     } on DioError catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(CustomFailure(e.toString()));
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(CustomFailure(e.toString()));
     }
   }
 }

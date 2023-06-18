@@ -7,7 +7,7 @@ import 'package:shopping_time/features/account_feature/presentation/views/profil
 import 'package:shopping_time/features/account_feature/presentation/views/shipping_address_view.dart';
 import 'package:shopping_time/features/app_Layout_feature/presentation/views/app_layout.dart';
 import 'package:shopping_time/features/auth_feature/presentation/views/login_view.dart';
-import 'package:shopping_time/features/auth_feature/presentation/views/register_view.dart';
+import 'package:shopping_time/features/auth_feature/presentation/views/signup_view.dart';
 import 'package:shopping_time/features/home_feature/data/models/category_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/views/cart_view.dart';
 import 'package:shopping_time/features/category_products_feature/presentation/views/category_products_view.dart';
@@ -47,7 +47,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/register',
-        builder: (context, state) => const RegisterView(),
+        builder: (context, state) => const SignUpView(),
       ),
       GoRoute(
         path: '/appLayout',

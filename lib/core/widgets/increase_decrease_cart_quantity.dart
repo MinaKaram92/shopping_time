@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';

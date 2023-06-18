@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:shopping_time/constants.dart';
-import 'package:shopping_time/features/splash_feature/utils/splash_text_styles.dart';
+import 'package:shopping_time/core/constants/constants.dart';
+import 'package:shopping_time/core/utils/app_text_styles.dart';
 
 class ShimmerTitle extends StatelessWidget {
   const ShimmerTitle({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class ShimmerTitle extends StatelessWidget {
         period: const Duration(seconds: 2),
         child: const Text(
           'Shopping Time',
-          style: SplashTextStyles.style30,
+          style: AppTextStyles.style30Bold,
           textAlign: TextAlign.center,
         ),
       ),

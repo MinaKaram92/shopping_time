@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_time/constants.dart';
 
 abstract class AppTextStyles {
-  static const titleStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 30.0,
-    color: Color(appSecondaryColor),
-  );
-
   static const textStyle20 =
       TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400);
+
+  /* static const textStyle20 = TextStyle(
+    color: Color(onBoardingPrimaryColor),
+    fontSize: 20.0,
+  ); */
 
   static const textStyle24Reg =
       TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400);
@@ -27,5 +25,16 @@ abstract class AppTextStyles {
     fontSize: 18.0,
     color: Colors.black,
     fontWeight: FontWeight.w500,
+  );
+
+  static const style30Bold = TextStyle(
+    fontSize: 30.0,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const textStyle22 = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 22.0,
+    color: Colors.white,
   );
 }

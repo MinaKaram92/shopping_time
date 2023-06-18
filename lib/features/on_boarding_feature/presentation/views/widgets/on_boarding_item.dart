@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/features/on_boarding_feature/data/models/on_boarding_model.dart';
-import 'package:shopping_time/features/on_boarding_feature/utils/on_boarding_text_styles.dart';
 
 class OnBoardingItem extends StatelessWidget {
   const OnBoardingItem({Key? key, required this.model}) : super(key: key);
@@ -27,14 +27,14 @@ class OnBoardingItem extends StatelessWidget {
         Text(
           model.title,
           // todo check the colors
-          style: OnBoardingTextStyles.textStyle30,
+          style: AppTextStyles.style30Bold.copyWith(color: Colors.white),
         ),
         const SizedBox(
           height: 16.0,
         ),
         Text(
           model.subTitle,
-          style: OnBoardingTextStyles.textStyle22,
+          style: AppTextStyles.textStyle22,
           textAlign: TextAlign.center,
         ),
       ],

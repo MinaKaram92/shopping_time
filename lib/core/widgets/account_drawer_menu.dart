@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shopping_time/constants.dart';
-import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/core/widgets/menu_navigation_item.dart';
-import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';
 import 'package:shopping_time/features/account_feature/presentation/view_models/account_states.dart';
+import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_cubit.dart';
+import 'package:shopping_time/features/auth_feature/presentation/view_models/auth_cubit/auth_states.dart';
 
 class AccountDrawerMenu extends StatelessWidget {
   const AccountDrawerMenu({Key? key, required this.trailing}) : super(key: key);
   final bool trailing;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AccountCubit, AccountStates>(
+    return BlocListener<AuthCubit, AuthStates>(
       listener: (context, state) async {
         if (state is SuccessSignOutState) {
           GoRouter.of(context).go(AppRouter.kLogin);
@@ -57,7 +56,7 @@ class AccountDrawerMenu extends StatelessWidget {
             title: 'Sign Out',
             leading: Icons.logout,
             onTap: () {
-              BlocProvider.of<AccountCubit>(context).signOut();
+              BlocProvider.of<AuthCubit>(context).signOut();
             },
             trailing: trailing ? Icons.arrow_forward : null,
           )

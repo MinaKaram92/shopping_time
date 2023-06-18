@@ -6,7 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:flutter/cupertino.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
+import 'package:shopping_time/core/constants/firebase_consts.dart';
 import 'package:shopping_time/core/models/user_model/user_model.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/features/account_feature/presentation/view_models/account_states.dart';
@@ -25,8 +26,8 @@ class AccountCubit extends Cubit<AccountStates> {
     emit(LoadingGetUserAccountState());
     try {
       var userDocumentSnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentUserId)
+          .collection(usersCollection)
+          .doc(currentUser?.uid)
           .get();
       user = UserModel.fromJson(userDocumentSnapshot.data()!);
       storeDataInControllers();
@@ -65,7 +66,7 @@ class AccountCubit extends Cubit<AccountStates> {
   Future<void> _uploadProfileImage() async {
     try {
       Reference reference = FirebaseStorage.instance.ref().child(
-          'ProfileImages/$currentUserId/${path.basename(_profileImage!.path)}');
+          'ProfileImages/${currentUser?.uid}/${path.basename(_profileImage!.path)}');
       TaskSnapshot task = await reference.putFile(_profileImage!);
       String imageUrl = await task.ref.getDownloadURL();
       updateUserData(key: 'image', value: imageUrl);
@@ -90,21 +91,11 @@ class AccountCubit extends Cubit<AccountStates> {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc(currentUserId)
+          .doc(currentUser?.uid)
           .update({key: value});
       emit(SuccessUpdateUserDataState());
     } catch (e) {
       emit(FailureUpdateUserDataState(e.toString()));
-    }
-  }
-
-  Future signOut() async {
-    try {
-      await FirebaseAuth.instance.signOut();
-      await CacheHelper.deleteData('userId');
-      emit(SuccessSignOutState());
-    } catch (e) {
-      emit(FailureSignOutState(e.toString()));
     }
   }
 }

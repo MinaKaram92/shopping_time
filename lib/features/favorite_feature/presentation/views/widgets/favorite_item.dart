@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shopping_time/constants.dart';
+import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/functions.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
