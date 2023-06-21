@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_time/core/constants/constants.dart';
@@ -16,6 +14,7 @@ class FavoriteCubit extends Cubit<FavoriteStates> {
   List<ProductModel> favorites = [];
 
   void getFavorites() {
+    emit(LoadingFavoriteState());
     try {
       favorites = [];
       for (var product in productsList) {

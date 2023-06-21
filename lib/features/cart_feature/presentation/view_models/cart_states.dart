@@ -2,6 +2,8 @@ abstract class CartStates {}
 
 class InitialCartState extends CartStates {}
 
+class LoadingCartState extends CartStates {}
+
 class SuccessAddToCartState extends CartStates {}
 
 class FailureAddToCartState extends CartStates {

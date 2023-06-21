@@ -23,6 +23,7 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   void getCart() {
+    emit(LoadingCartState());
     userCart = [];
     try {
       for (var product in productsList) {

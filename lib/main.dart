@@ -7,6 +7,7 @@ import 'package:shopping_time/core/constants/firebase_consts.dart';
 import 'package:shopping_time/core/network/local/cache_helper.dart';
 import 'package:shopping_time/core/utils/app_router.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
+import 'package:shopping_time/features/account_feature/data/repos/account_repo_impl.dart';
 import 'package:shopping_time/features/account_feature/presentation/view_models/account_cubit.dart';
 import 'package:shopping_time/features/app_Layout_feature/presentation/view_models/home_layout_cubit/app_layout_cubit.dart';
 import 'package:shopping_time/features/auth_feature/data/repos/auth_repo_impl.dart';
@@ -55,7 +56,9 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => AppLayoutCubit(),
         ),
         BlocProvider<AccountCubit>(
-          create: (BuildContext context) => AccountCubit(),
+          create: (BuildContext context) =>
+              AccountCubit(ServiceLocator.sl.get<AccountRepoImpl>())
+                ..getUserData(),
         ),
         BlocProvider<CartCubit>(
           create: (BuildContext context) => CartCubit()..getCart(),

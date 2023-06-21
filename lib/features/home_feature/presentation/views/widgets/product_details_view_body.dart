@@ -17,7 +17,6 @@ class ProductDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductDetailsCubit, ProductDetailsStates>(
       builder: (context, state) {
-        final cubit = BlocProvider.of<ProductDetailsCubit>(context);
         return ConditionalBuilder(
           condition: true,
           builder: (context) {

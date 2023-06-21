@@ -16,7 +16,12 @@ class ProductItemDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey[400], borderRadius: BorderRadius.circular(16.0)),
+        color: Colors.grey[400],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(24.0),
+          topRight: Radius.circular(24.0),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.only(
           left: 14.0,
@@ -37,9 +42,9 @@ class ProductItemDetails extends StatelessWidget {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(r'$' '${productModel.price}'),
-                const Spacer(),
                 BlocBuilder<FavoriteCubit, FavoriteStates>(
                   builder: (context, state) {
                     final cubit = BlocProvider.of<FavoriteCubit>(context);

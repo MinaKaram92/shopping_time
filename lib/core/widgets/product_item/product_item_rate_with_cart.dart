@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/models/product_model/product_model.dart';
 import 'package:shopping_time/core/widgets/product_item/rate_item.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
@@ -24,9 +23,9 @@ class ProductItemRateWithCart extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 RateItem(productModel: productModel),
-                const Spacer(),
                 IconButton(
                   alignment: Alignment.center,
                   padding: EdgeInsets.zero,

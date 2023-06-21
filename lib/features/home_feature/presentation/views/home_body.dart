@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_time/core/constants/constants.dart';
+import 'package:shopping_time/core/functions.dart';
 import 'package:shopping_time/core/utils/app_text_styles.dart';
 import 'package:shopping_time/core/utils/service_locator.dart';
 import 'package:shopping_time/features/app_Layout_feature/presentation/views/widgets/search_product.dart';
@@ -16,56 +17,62 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SearchProduct(),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0, left: 8.0),
-                child: Text(
-                  'Categories',
-                  style: AppTextStyles.style30Bold
-                      .copyWith(color: const Color(appSecondaryColor)),
-                ),
-              ),
-              const CategoriesBuilder(),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, bottom: 16.0),
-                child: Text(
-                  'Explore',
-                  style: AppTextStyles.style30Bold
-                      .copyWith(color: const Color(appSecondaryColor)),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: BlocProvider<HomeBodyProductsCubit>(
-            create: (context) =>
-                HomeBodyProductsCubit(ServiceLocator.sl.get<HomeBodyRepoImpl>())
-                  ..getHomeBodyProducts(),
-            child: BlocBuilder<HomeBodyProductsCubit, HomeBodyProductsStates>(
-              builder: (context, state) {
-                return ConditionalBuilder(
-                  condition: productsList.isNotEmpty,
-                  builder: (context) {
-                    return ProductsGridViewBuilder(
+    return BlocProvider<HomeBodyProductsCubit>(
+      create: (context) =>
+          HomeBodyProductsCubit(ServiceLocator.sl.get<HomeBodyRepoImpl>())
+            ..getHomeBodyProducts(),
+      child: BlocConsumer<HomeBodyProductsCubit, HomeBodyProductsStates>(
+        listener: (context, state) {
+          if (state is FailureHomeBodyProductsState) {
+            showSnack(context, SnackStatus.fail, state.errorMessage);
+          }
+        },
+        builder: (context, state) {
+          return ConditionalBuilder(
+            condition: productsList.isNotEmpty,
+            builder: (context) {
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SearchProduct(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0, left: 8.0),
+                          child: Text(
+                            'Categories',
+                            style: AppTextStyles.style30Bold.copyWith(
+                                color: const Color(appSecondaryColor)),
+                          ),
+                        ),
+                        const CategoriesBuilder(),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(left: 8.0, bottom: 16.0),
+                          child: Text(
+                            'Explore',
+                            style: AppTextStyles.style30Bold.copyWith(
+                                color: const Color(appSecondaryColor)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: ProductsGridViewBuilder(
                       products: productsList,
                       scrollPhysics: const NeverScrollableScrollPhysics(),
-                    );
-                  },
-                  fallback: (context) =>
-                      const Center(child: CircularProgressIndicator()),
-                );
-              },
-            ),
-          ),
-        ),
-      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+            fallback: (context) =>
+                const Center(child: CircularProgressIndicator()),
+          );
+        },
+      ),
     );
   }
 }

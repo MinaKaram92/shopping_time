@@ -12,21 +12,7 @@ class FailureGetUserDataState extends AccountStates {
   FailureGetUserDataState(this.errMessage);
 }
 
-class SuccessPickImageState extends AccountStates {}
-
-class FailurePickImageState extends AccountStates {
-  final String errMessage;
-
-  FailurePickImageState(this.errMessage);
-}
-
-class SuccessUploadProfileImageState extends AccountStates {}
-
-class FailureUploadProfileImageState extends AccountStates {
-  final String errMessage;
-
-  FailureUploadProfileImageState(this.errMessage);
-}
+class LoadingUpdateUserDataState extends AccountStates {}
 
 class SuccessUpdateUserDataState extends AccountStates {}
 
@@ -36,6 +22,8 @@ class FailureUpdateUserDataState extends AccountStates {
   FailureUpdateUserDataState(this.errMessage);
 }
 
+class LoadingUpdateEmailState extends AccountStates {}
+
 class SuccessUpdateEmailState extends AccountStates {}
 
 class FailureUpdateEmailState extends AccountStates {
@@ -44,10 +32,12 @@ class FailureUpdateEmailState extends AccountStates {
   FailureUpdateEmailState(this.errMessage);
 }
 
-class SuccessSignOutState extends AccountStates {}
+class LoadingUpdateProfilePhotoState extends AccountStates {}
 
-class FailureSignOutState extends AccountStates {
+class SuccessUpdateProfilePhotoState extends AccountStates {}
+
+class FailureUpdateProfilePhotoState extends AccountStates {
   final String errMessage;
 
-  FailureSignOutState(this.errMessage);
+  FailureUpdateProfilePhotoState(this.errMessage);
 }

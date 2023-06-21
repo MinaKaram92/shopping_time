@@ -10,6 +10,7 @@ class HomeBodyProductsCubit extends Cubit<HomeBodyProductsStates> {
   final HomeBodyRepo _homeBodyProductsRepo;
 
   Future<void> getHomeBodyProducts() async {
+    emit(LoadingHomeBodyProductsState());
     if (productsList.isEmpty) {
       var response = await _homeBodyProductsRepo.getHomeBodyProducts();
       response.fold((failure) {

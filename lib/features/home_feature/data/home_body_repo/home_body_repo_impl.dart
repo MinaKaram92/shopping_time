@@ -21,7 +21,7 @@ class HomeBodyRepoImpl implements HomeBodyRepo {
       }
       return right(productsList);
     } on DioError catch (e) {
-      return left(CustomFailure(e.toString()));
+      return left(CustomFailure.fromDioError(e));
     } catch (e) {
       return left(CustomFailure(e.toString()));
     }
@@ -40,7 +40,7 @@ class HomeBodyRepoImpl implements HomeBodyRepo {
       }
       return right(categoryProductsList);
     } on DioError catch (e) {
-      return left(CustomFailure(e.toString()));
+      return left(CustomFailure.fromDioError(e));
     } catch (e) {
       return left(CustomFailure(e.toString()));
     }

@@ -2,6 +2,8 @@ abstract class FavoriteStates {}
 
 class InitialFavoriteState extends FavoriteStates {}
 
+class LoadingFavoriteState extends FavoriteStates {}
+
 class SuccessGetFavoritesState extends FavoriteStates {}
 
 class FailureGetFavoritesState extends FavoriteStates {

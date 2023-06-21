@@ -8,6 +8,7 @@ enum SnackStatus { fail, success }
 void showSnack(BuildContext context, SnackStatus status, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(text),
+    behavior: SnackBarBehavior.floating,
     backgroundColor: status.index == 0 ? Colors.redAccent : Colors.green,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
   ));

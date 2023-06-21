@@ -14,7 +14,7 @@ class AccountDrawerMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthStates>(
       listener: (context, state) async {
-        if (state is SuccessSignOutState) {
+        if (state is SuccessSignOutUserState) {
           GoRouter.of(context).go(AppRouter.kLogin);
         }
       },

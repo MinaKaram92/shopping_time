@@ -15,11 +15,6 @@ class ProfileMenuItemSheet extends StatelessWidget {
     required this.prefix,
     required this.autovalidateMode,
     this.validate,
-    required this.border,
-    required this.errorBorder,
-    required this.focusedBorder,
-    required this.focusedErrorBorder,
-    required this.enabledBorder,
   }) : super(key: key);
 
   final String hint;
@@ -29,11 +24,6 @@ class ProfileMenuItemSheet extends StatelessWidget {
   final IconData prefix;
   final String? Function(String?)? validate;
   final AutovalidateMode autovalidateMode;
-  final InputBorder border;
-  final InputBorder errorBorder;
-  final InputBorder focusedBorder;
-  final InputBorder focusedErrorBorder;
-  final InputBorder enabledBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +45,16 @@ class ProfileMenuItemSheet extends StatelessWidget {
               CustomTextFormField(
                 hintText: hint,
                 textController: controller,
-                border: border,
-                errorBorder: errorBorder,
-                focusedBorder: focusedBorder,
-                focusedErrorBorder: focusedErrorBorder,
-                enabledBorder: enabledBorder,
+                border: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(appSecondaryColor))),
+                errorBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red)),
+                focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(appSecondaryColor))),
+                focusedErrorBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red)),
+                enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(appSecondaryColor))),
                 prefixIcon: prefix,
                 inputType: textInputType,
                 validate: validate,

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_time/core/constants/constants.dart';
 import 'package:shopping_time/core/functions.dart';
-import 'package:shopping_time/core/utils/app_text_styles.dart';
-import 'package:shopping_time/core/widgets/cart_favorite_product_image.dart';
 import 'package:shopping_time/core/widgets/slide_left_background.dart';
-import 'package:shopping_time/core/widgets/increase_decrease_cart_quantity.dart';
 import 'package:shopping_time/core/widgets/slide_right_background.dart';
 import 'package:shopping_time/features/cart_feature/data/models/cart_model.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_cubit.dart';
 import 'package:shopping_time/features/cart_feature/presentation/view_models/cart_states.dart';
-import 'package:shopping_time/features/cart_feature/presentation/views/widgets/cart_item_datails.dart';
+import 'package:shopping_time/features/cart_feature/presentation/views/widgets/cart_product_item_details.dart';
 import 'package:shopping_time/features/favorite_feature/presentation/view_models/favorite_cubit.dart';
 
 class CartProductItem extends StatelessWidget {
@@ -25,7 +21,6 @@ class CartProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartStates>(
       builder: (context, state) {
-        var cubit = BlocProvider.of<CartCubit>(context);
         return Dismissible(
           key: Key('${cartModel.productModel.id}'),
           secondaryBackground: const SlideLeftBackground(),
@@ -34,58 +29,56 @@ class CartProductItem extends StatelessWidget {
             slideRightText: 'Move To Favorite',
           ),
           onDismissed: (direc) {
-            if (direc == DismissDirection.endToStart) {
-              cubit.removeProductFromCart(cartModel.productModel);
-            } else if (direc == DismissDirection.startToEnd) {
-              cubit.removeProductFromCart(cartModel.productModel);
-              BlocProvider.of<FavoriteCubit>(context)
-                  .addToFavorites(cartModel.productModel);
-            }
+            onDismissedCartItem(context, direc);
           },
           confirmDismiss: (direc) async {
-            if (direc == DismissDirection.endToStart) {
-              return await showDialog(
-                context: context,
-                builder: (context) {
-                  return showAlertDialog(context,
-                      content:
-                          'Are you sure you want to remove this item from cart?',
-                      okPressed: () {
-                    Navigator.of(context).pop(true);
-                  });
-                },
-              );
-            } else if (direc == DismissDirection.startToEnd) {
-              return await showDialog(
-                context: context,
-                builder: (context) {
-                  return showAlertDialog(
-                    context,
-                    content:
-                        'Are you sure you want to move this item to favorites?',
-                    okPressed: () {
-                      Navigator.of(context).pop(true);
-                    },
-                  );
-                },
-              );
-            }
+            return await confirmDismiss(context, direc);
           },
-          child: Container(
-            color: Colors.white,
-            height: MediaQuery.of(context).size.height * 1.2 / 5,
-            child: Row(
-              children: [
-                CartFavoriteProductImage(productModel: cartModel.productModel),
-                const SizedBox(
-                  width: 24.0,
-                ),
-                CartItemDetails(cartModel: cartModel),
-              ],
-            ),
-          ),
+          child: CartProductItemDetails(cartModel: cartModel),
         );
       },
     );
+  }
+
+  void onDismissedCartItem(BuildContext context, DismissDirection direc) {
+    if (direc == DismissDirection.endToStart) {
+      BlocProvider.of<CartCubit>(context)
+          .removeProductFromCart(cartModel.productModel);
+    } else if (direc == DismissDirection.startToEnd) {
+      BlocProvider.of<CartCubit>(context)
+          .removeProductFromCart(cartModel.productModel);
+      BlocProvider.of<FavoriteCubit>(context)
+          .addToFavorites(cartModel.productModel);
+    }
+  }
+
+  Future<bool?> confirmDismiss(
+      BuildContext context, DismissDirection direc) async {
+    if (direc == DismissDirection.endToStart) {
+      return await showDialog(
+        context: context,
+        builder: (context) {
+          return showAlertDialog(context,
+              content: 'Are you sure you want to remove this item from cart?',
+              okPressed: () {
+            Navigator.of(context).pop(true);
+          });
+        },
+      );
+    } else if (direc == DismissDirection.startToEnd) {
+      return await showDialog(
+        context: context,
+        builder: (context) {
+          return showAlertDialog(
+            context,
+            content: 'Are you sure you want to move this item to favorites?',
+            okPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          );
+        },
+      );
+    }
+    return null;
   }
 }

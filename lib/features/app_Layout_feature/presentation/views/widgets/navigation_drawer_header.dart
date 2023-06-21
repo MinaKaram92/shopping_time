@@ -37,7 +37,7 @@ class NavigationDrawerHeader extends StatelessWidget {
             ),
           );
         },
-        fallback: (context) => CircularProgressIndicator(),
+        fallback: (context) => const Center(child: CircularProgressIndicator()),
       );
     });
   }

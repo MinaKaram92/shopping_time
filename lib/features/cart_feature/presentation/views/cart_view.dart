@@ -9,16 +9,21 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(appPrimaryColor),
-      appBar: AppBar(
-        title: const Text(
-          'Cart',
-          style: TextStyle(color: Color(appSecondaryColor)),
-        ),
-        leading: const BackButton(color: Color(appSecondaryColor)),
-        backgroundColor: const Color(appPrimaryColor),
-        elevation: 0,
-      ),
+      appBar: cartAppBar(),
       body: const CartViewBody(),
+    );
+  }
+
+  AppBar cartAppBar() {
+    return AppBar(
+      title: const Text(
+        'Cart',
+        style: TextStyle(color: Color(appSecondaryColor)),
+      ),
+      centerTitle: true,
+      leading: const BackButton(color: Color(appSecondaryColor)),
+      backgroundColor: const Color(appPrimaryColor),
+      elevation: 0,
     );
   }
 }

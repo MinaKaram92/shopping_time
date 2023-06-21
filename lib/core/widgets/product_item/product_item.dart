@@ -15,38 +15,29 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         GoRouter.of(context)
             .push(AppRouter.kProductDetailsView, extra: productModel);
       },
-      child: Column(
-        children: [
-          SizedBox(
-            width: size.width * .9 / 2,
-            height: size.height * 1.2 / 3,
-            child: Card(
-              elevation: 0,
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.0)),
-              child: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ProductItemRateWithCart(productModel: productModel),
-                      const Spacer(),
-                      ProductItemDetails(productModel: productModel),
-                    ],
-                  ),
-                  ProductItemImage(productModel: productModel),
-                ],
-              ),
-            ),
+      child: Card(
+        elevation: 0,
+        color: Colors.white,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24.0),
+            topRight: Radius.circular(24.0),
           ),
-        ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ProductItemRateWithCart(productModel: productModel),
+            ProductItemImage(productModel: productModel),
+            ProductItemDetails(productModel: productModel),
+          ],
+        ),
       ),
     );
   }

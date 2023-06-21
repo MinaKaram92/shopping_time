@@ -21,7 +21,7 @@ class CustomFailure {
         print('fail bad res error: ${dioError.error}');
         print('fail bad res message: ${dioError.message}');
         print('fail bad res response: ${dioError.response}');
-        return CustomFailure.fromResponse(
+        return CustomFailure._fromResponse(
             dioError.response?.statusCode, dioError.response);
 
       case DioErrorType.connectionError:
@@ -44,7 +44,7 @@ class CustomFailure {
     }
   }
 
-  factory CustomFailure.fromResponse(int? statusCode, dynamic response) {
+  factory CustomFailure._fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return CustomFailure(response['error']['message']);
     } else if (statusCode == 404) {
